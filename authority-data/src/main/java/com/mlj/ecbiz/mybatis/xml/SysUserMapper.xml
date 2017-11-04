@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mlj.ecbiz.model.permission.SysUserMapper">
+ 	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->  
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>  -->
+    <!--<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>   -->
+    <resultMap id="SysUserResult" type="com.mlj.ecbiz.model.permission.SysUser">
+        <result property="uid" column="uid"/>
+        <result property="uname" column="uname"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="organization" column="organization"/>
+        <result property="rId" column="r_id"/>
+        <result property="rName" column="r_name"/>
+        <result property="operator" column="operator"/>
+        <result property="tel" column="tel"/>
+        <result property="status" column="status"/>
+        <result property="created" column="created"/>
+        <result property="note" column="note"/>
+    </resultMap>
+
+    <sql id="sys_user_columns">
+        sys_user.uid,
+        sys_user.uname,
+        sys_user.password,
+        sys_user.name,
+        sys_user.organization,
+        sys_user.r_id,
+        sys_user.r_name,
+        sys_user.operator,
+        sys_user.tel,
+        sys_user.status,
+        sys_user.created,
+        sys_user.note
+    </sql>
+    
+    <sql id="sys_user_where_conditions">
+    	<trim prefix="where" prefixOverrides="and|or">
+        <if test="uid != null">
+        	and uid=#{uid} 
+        </if>
+        
+        <if test="uname != null and uname != ''">
+        	and uname=#{uname} 
+        </if>
+        
+        <if test="password != null and password != ''">
+        	and password=#{password} 
+        </if>
+        
+        <if test="name != null and name != ''">
+        	and name=#{name} 
+        </if>
+        
+        <if test="organization != null and organization != ''">
+        	and organization=#{organization} 
+        </if>
+        
+        <if test="rId != null and rId != ''">
+        	and r_id=#{rId} 
+        </if>
+        
+        <if test="rName != null and rName != ''">
+        	and r_name=#{rName} 
+        </if>
+        
+        <if test="operator != null and operator != ''">
+        	and operator=#{operator} 
+        </if>
+        
+        <if test="tel != null and tel != ''">
+        	and tel=#{tel} 
+        </if>
+        
+        <if test="status != null and status != ''">
+        	and status=#{status} 
+        </if>
+        <if test="created != null">
+        	and created=#{created} 
+        </if>
+        
+        <if test="note != null and note != ''">
+        	and note=#{note} 
+        </if>
+        </trim>
+    </sql>
+    
+    <sql id="sys_user_set_conditions">
+    	<set>
+        <if test="uid != null">
+        	uid=#{uid},
+        </if>
+        <if test="uname != null">
+        	uname=#{uname},
+        </if>
+        <if test="password != null">
+        	password=#{password},
+        </if>
+        <if test="name != null">
+        	name=#{name},
+        </if>
+        <if test="organization != null">
+        	organization=#{organization},
+        </if>
+        <if test="rId != null">
+        	r_id=#{rId},
+        </if>
+        <if test="rName != null">
+        	r_name=#{rName},
+        </if>
+        <if test="operator != null">
+        	operator=#{operator},
+        </if>
+        <if test="tel != null">
+        	tel=#{tel},
+        </if>
+        <if test="status != null">
+        	status=#{status},
+        </if>
+        <if test="created != null">
+        	created=#{created},
+        </if>
+        <if test="note != null">
+        	note=#{note},
+        </if>
+            uid = uid
+        </set>
+    </sql>
+
+    <sql id="sys_user_properties">
+        #{uid},
+        #{uname},
+        #{password},
+        #{name},
+        #{organization},
+        #{rId},
+        #{rName},
+        #{operator},
+        #{tel},
+        #{status},
+        #{created},
+        #{note}
+    </sql>
+
+    <insert id="createSysUser" parameterType="com.mlj.ecbiz.model.permission.SysUser" keyColumn="id" keyProperty="id" useGeneratedKeys="true" >
+        insert INTO sys_user (<include refid="sys_user_columns"/>) VALUES (<include refid="sys_user_properties"/>)
+    </insert>
+	
+	<insert id="insertSysUser" parameterType="com.mlj.ecbiz.model.permission.SysUser" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    	insert into sys_user
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+    			<if test="uid != null" >
+        			uid,
+    			</if>
+    			<if test="uname != null" >
+        			uname,
+    			</if>
+    			<if test="password != null" >
+        			password,
+    			</if>
+    			<if test="name != null" >
+        			name,
+    			</if>
+    			<if test="organization != null" >
+        			organization,
+    			</if>
+    			<if test="rId != null" >
+        			r_id,
+    			</if>
+    			<if test="rName != null" >
+        			r_name,
+    			</if>
+    			<if test="operator != null" >
+        			operator,
+    			</if>
+    			<if test="tel != null" >
+        			tel,
+    			</if>
+    			<if test="status != null" >
+        			status,
+    			</if>
+    			<if test="created != null" >
+        			created,
+    			</if>
+    			<if test="note != null" >
+        			note
+    			</if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides="," >
+    			<if test="uid != null" >
+        		#{uid},
+    		</if>
+    			<if test="uname != null" >
+        		#{uname},
+    		</if>
+    			<if test="password != null" >
+        		#{password},
+    		</if>
+    			<if test="name != null" >
+        		#{name},
+    		</if>
+    			<if test="organization != null" >
+        		#{organization},
+    		</if>
+    			<if test="rId != null" >
+        		#{rId},
+    		</if>
+    			<if test="rName != null" >
+        		#{rName},
+    		</if>
+    			<if test="operator != null" >
+        		#{operator},
+    		</if>
+    			<if test="tel != null" >
+        		#{tel},
+    		</if>
+    			<if test="status != null" >
+        		#{status},
+    		</if>
+    			<if test="created != null" >
+        		#{created},
+    		</if>
+    			<if test="note != null" >
+        		#{note}
+    		</if>
+    	</trim>
+  	</insert>
+	
+    <delete id="deleteSysUserById" parameterType="Long">
+        delete from sys_user
+        where
+            		uid = #{            			value
+            		}
+    </delete>
+    
+    <delete id="deleteSysUserByObj" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        delete from sys_user
+        <include refid="sys_user_where_conditions"/>
+    </delete>
+    
+  	<delete id="deleteSysUserByIdList" parameterType="java.util.List">
+    	delete from sys_user 
+        	where
+            uid
+    		IN 
+    		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+    </delete>
+
+    <update id="updateSysUser" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        update sys_user SET
+            uid = #{uid},
+            uname = #{uname},
+            password = #{password},
+            name = #{name},
+            organization = #{organization},
+            r_id = #{rId},
+            r_name = #{rName},
+            operator = #{operator},
+            tel = #{tel},
+            status = #{status},
+            created = #{created},
+            note = #{note}
+        where
+            uid = #{uid}
+    </update>
+    
+    <update id="updateSysUserByObj" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        update sys_user 
+        <include refid="sys_user_set_conditions"/>
+        where
+            uid = #{uid}
+    </update>
+    
+    <update id="updateSysUserByObjAndConditions" parameterType="java.util.HashMap">
+        update sys_user 
+        <set>
+        <if test="s.uid != null">
+        	uid=#{s.uid},
+        </if>
+        <if test="s.uname != null">
+        	uname=#{s.uname},
+        </if>
+        <if test="s.password != null">
+        	password=#{s.password},
+        </if>
+        <if test="s.name != null">
+        	name=#{s.name},
+        </if>
+        <if test="s.organization != null">
+        	organization=#{s.organization},
+        </if>
+        <if test="s.rId != null">
+        	r_id=#{s.rId},
+        </if>
+        <if test="s.rName != null">
+        	r_name=#{s.rName},
+        </if>
+        <if test="s.operator != null">
+        	operator=#{s.operator},
+        </if>
+        <if test="s.tel != null">
+        	tel=#{s.tel},
+        </if>
+        <if test="s.status != null">
+        	status=#{s.status},
+        </if>
+        <if test="s.created != null">
+        	created=#{s.created},
+        </if>
+        <if test="s.note != null">
+        	note=#{s.note},
+        </if>
+        </set>
+        <where>
+        <if test="c.uid != null">
+        	uid=#{c.uid} AND 
+        </if>
+        <if test="c.uname != null">
+        	uname=#{c.uname} AND 
+        </if>
+        <if test="c.password != null">
+        	password=#{c.password} AND 
+        </if>
+        <if test="c.name != null">
+        	name=#{c.name} AND 
+        </if>
+        <if test="c.organization != null">
+        	organization=#{c.organization} AND 
+        </if>
+        <if test="c.rId != null">
+        	r_id=#{c.rId} AND 
+        </if>
+        <if test="c.rName != null">
+        	r_name=#{c.rName} AND 
+        </if>
+        <if test="c.operator != null">
+        	operator=#{c.operator} AND 
+        </if>
+        <if test="c.tel != null">
+        	tel=#{c.tel} AND 
+        </if>
+        <if test="c.status != null">
+        	status=#{c.status} AND 
+        </if>
+        <if test="c.created != null">
+        	created=#{c.created} AND 
+        </if>
+        <if test="c.note != null">
+        	note=#{c.note} AND 
+        </if>
+       (status!=2)
+        </where>
+    </update>
+    
+    <update id="batchUpdateSysUser" parameterType="java.util.List">
+		update sys_user
+		<trim prefix="set" suffixOverrides=",">
+      	 	<trim prefix="uid=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.uid!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.uid}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="uname=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.uname!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.uname}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="password=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.password!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.password}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="name=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.name!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.name}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="organization=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.organization!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.organization}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="r_id=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.rId!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.rId}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="r_name=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.rName!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.rName}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="operator=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.operator!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.operator}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="tel=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.tel!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.tel}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="status=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.status!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.status}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="created=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.created!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.created}
+					</if>
+				</foreach>
+			</trim>
+      	 	<trim prefix="note=CASE" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+					<if test="i.note!=null">
+						WHEN 
+            			uid = #{i.uid}
+        				 THEN #{i.note}
+					</if>
+				</foreach>
+			</trim>
+		</trim>
+		where
+		<foreach collection="list" separator="or" item="i" index="index">
+            	(uid = #{i.uid})
+		</foreach>
+	</update>
+    
+    
+
+    <select id="getSysUserById" resultMap="SysUserResult" parameterType="Long">
+        select
+        <include refid="sys_user_columns"/>
+        from sys_user
+        where
+            uid = #{value}
+    </select>
+    
+    <select id="getSysUserByObj" resultMap="SysUserResult" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        select
+        <include refid="sys_user_columns"/>
+        from sys_user
+        <include refid="sys_user_where_conditions"/>
+    </select>
+	
+    
+    <select id="getSysUserListByObj" resultMap="SysUserResult"  parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        select
+        <include refid="sys_user_columns"/>
+        from sys_user 
+        <include refid="sys_user_where_conditions"/>
+    </select>
+    
+    <select id="getSysUserListByMap" resultMap="SysUserResult"  parameterType="java.util.HashMap">
+        select
+        <include refid="sys_user_columns"/>
+        from sys_user 
+        <include refid="sys_user_where_conditions"/>
+        limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER} 
+    </select>
+    
+    <select id="getSysUserCountByObj" resultType="int" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        select count(1) from sys_user
+        <include refid="sys_user_where_conditions"/>
+    </select>
+    
+    
+    
+    <select id="getSysUserIdByObj" resultType="Long" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+        select       uid                         
+        from sys_user
+        <include refid="sys_user_where_conditions"/>
+    </select>
+	
+    <select id="getSysUserIdList" resultType="Long" parameterType="com.mlj.ecbiz.model.permission.SysUser">
+       select       uid                          from sys_user where 1=1 
+        uid = #{value}
+    </select>
+    
+    <select id="getSysUserIdListByObj" resultType="Long"  parameterType="com.mlj.ecbiz.model.permission.SysUser">
+       select       uid                          from sys_user 
+        <include refid="sys_user_where_conditions"/>
+    </select>
+    
+    <select id="getSysUserIdListByMap" resultType="Long"  parameterType="java.util.HashMap">
+        select       uid                          from sys_user 
+        <include refid="sys_user_where_conditions"/>
+        limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER} 
+    </select>
+</mapper>

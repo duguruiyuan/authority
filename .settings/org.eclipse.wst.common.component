@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="authority">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/authority-data/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/authority-entitydefs/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/authority-servicedef/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/authority-utils/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/authority-webapp/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <property name="context-root" value="authority"/>
+        <property name="java-output-path" value="/authority/target/classes"/>
+    </wb-module>
+</project-modules>

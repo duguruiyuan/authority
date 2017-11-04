@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>菜单</title>
+<!--
+<script src="statics/js/tree.js"></script>
+<link type="text/css" rel="stylesheet" href="statics/css/tree.css">
+-->
+<script type="text/javascript" src="statics/js/common/tree/xtree.js"></script>
+<script type="text/javascript" src="statics/js/common/tree/xmlextras.js"></script>
+<script type="text/javascript" src="statics/js/common/tree/xloadtree.js"></script>
+<link type="text/css" rel="stylesheet" href="statics/js/common/tree/xtree.css" />
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function loadTree(url){
+    if (url != ""){
+		parent.main.location=url;
+    }
+}
+//-->
+</SCRIPT>
+<style> 
+body{ 
+scrollbar-3dlight-color: #fff; 
+scrollbar-arrow-color:  #ffffff; 
+scrollbar-darkshadow-color: #89A4B6; 
+scrollbar-face-color: #A6CEF1; 
+scrollbar-highlight-color: #A6CEF1; 
+scrollbar-shadow-color: #ffffff; 
+scrollbar-track-color: #E4F0F9; 
+} 
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body bgcolor="#D3E4F7" style="padding:5 0 0 5;margin:0px;">
+
+<script language="JavaScript">
+
+	
+	oldObj = null;
+	webFXTreeConfig.rootIcon		= "statics/images/menu/sys.gif";
+	webFXTreeConfig.openRootIcon	= "statics/images/menu/sys.gif";
+	webFXTreeConfig.folderIcon		= "statics/images/menu/foldericon.gif";
+	webFXTreeConfig.openFolderIcon	= "statics/images/menu/openfoldericon.gif";
+	
+	webFXTreeConfig.folderIcon2		= "statics/images/menu/foldericon2.gif";
+	webFXTreeConfig.openFolderIcon2	= "statics/images/menu/openfoldericon2.gif";
+	
+	webFXTreeConfig.fileIcon		= "statics/images/menu/file.gif";
+	webFXTreeConfig.lMinusIcon		= "statics/images/menu/Lminus.gif";
+	webFXTreeConfig.lPlusIcon		= "statics/images/menu/Lplus.gif";
+	webFXTreeConfig.tMinusIcon		= "statics/images/menu/Tminus.gif";
+	webFXTreeConfig.tPlusIcon		= "statics/images/menu/Tplus.gif";
+	
+	webFXTreeConfig.iIcon			= "statics/images/menu/I.gif";
+	webFXTreeConfig.lIcon			= "statics/images/menu/L.gif";
+	webFXTreeConfig.tIcon			= "statics/images/menu/T.gif";
+	webFXTreeConfig.blankIcon       = "statics/images/menu/blank.gif";
+	webFXTreeConfig.usePersistence = false;
+	var tree1;
+	tree1 = new WebFXLoadTree("企业电商管理系统","/menu/loadMenuTree");
+	
+	document.write(tree1);
+	tree1.expandAll();
+	//WebFXTreeAbstractNode.prototype.expandAll();
+	
+	
+</script>
+
+
+</body>
+</html>
