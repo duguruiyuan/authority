@@ -43,7 +43,6 @@ public class SysUserController {
 	private SysRoleService sysRoleService;
 	@Autowired
 	private SysUserRoleService sysUserRoleService;
-
 	// 路径
 	private String toList = "/permission/sysUserList.httl";// 列表页
 	private String toAdd = "/permission/sysUserAdd.httl";// 添加页面
@@ -193,12 +192,9 @@ public class SysUserController {
 			for (String id : idArray) {
 				if (!"".equals(id)) {
 					sysUser.setUid(Long.valueOf(id));
-					//sysUser.setStatus(SysUser.DELETE_STATUS);
 					this.sysUserService.updateSysUserByObj(sysUser);
 				}
 			}
-			//attr.addAttribute("query", query);
-			//attr.addAttribute("page", page);
 		} catch (Exception e) {
 			logger.error("SysUserController.delete", e);
 		}

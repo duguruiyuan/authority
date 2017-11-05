@@ -40,9 +40,6 @@ public class SysRolePermissionController {
 	@RequestMapping(value="/addsave",method=RequestMethod.POST)
 	public String save(HttpServletRequest request) {
 		Long ret = -1L;
-		Set<Long> permissionIdSet = new HashSet<Long>();
-		Set<Long> resourceIdSet = new HashSet<Long>();
-		Set<String> parentIdSet = new HashSet<String>();
 		String permissionIds=request.getParameter("permissionIds");
 		String pids[]=permissionIds.split("#");
 		String roleId=request.getParameter("roleId");
