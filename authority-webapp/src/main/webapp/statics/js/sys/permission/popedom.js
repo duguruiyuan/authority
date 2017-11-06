@@ -13,9 +13,9 @@ $(document).ready(function() {
 	$("#unselects").live("click",function(){
 	    var items = $("#popedomIds option");
 	    var so = $("#popedomIds option:selected");
-			if(so.get(so.length-1).index == items.length-1) so.prev().attr("selected",true);
-			else so.next().attr("selected",true);
-			$("#roleId").append(so);
+		if(so.get(so.length-1).index == items.length-1) so.prev().attr("selected",true);
+		else so.next().attr("selected",true);
+		$("#roleId").append(so);
 	});
 	$("#roleId").live("dblclick",function(){
 		var items = $("#roleId option");
