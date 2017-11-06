@@ -1,54 +1,52 @@
-/**
- * 菜单管理js
- */
-var powrer = {};
-powrer.openDialogs = function(type, value) {
-	var title='';
-	var url = '';
-	
+//----------------------------------------------------//
+//----------------------> 菜单管理       @孟令杰  <--------------//
+//----------------------------------------------------//
+var powrer = {title:null,value:null,params:{},};
+powrer.openDialogs=function(type, value){
+	this.title=type;
+	this.value = value;
 	if(type == "delete"){
-		powrer.toDelResource(value);
+		powrer.toDelResource(this.value);
 	}
 	if(type == "add"){
 		title="资源添加";
-		powrer.AddWinOpen(value,title);
+		powrer.AddWinOpen();
 	}
 	if(type == "edit"){
 		title="资源修改";
-		powrer.EditWinOpen(value,title);
+		powrer.EditWinOpen();
 	}if(type == "move"){
 		title="资源移动";
 	}
 }
-
-powrer.EditWinOpen=function(value,title){
-	var val=value;
-	powrer.getResourcebyId(val);
+//----------------------> 打开  编辑资源界面      <--------------//
+powrer.EditWinOpen=function(){
+	powrer.getResourcebyId();
 	$("#dialog").dialog({
 		height:540,
 		width:600,
-		title:title,
+		title:this.title,
 		buttons : {
 			"确定" : function() {
-				powrer.toEditResource(val);
+				powrer.toEditResource();
 			},
 			"取消" : function() {
 				$(this).dialog('close');
-				
 			}
 		}
 	});
 }
-powrer.getResourcebyId=function(value){
+//---------------------->  获得一条资源信息     <--------------//
+powrer.getResourcebyId=function(){
 	//禁用缓存
-	$.ajaxSetup ({       cache: false    });
-	var params = {id:value};
+	$.ajaxSetup ({cache:false });
+	this.params = {id:this.value};
 	$.ajax({
 		url : "/power/edit",
 		dataType : 'json',
 		type : 'post',
 		scriptCharset :'utf-8',
-		data:params,
+		data:this.params,
 		success : function(data) {
 			$("#name").val(data[0].name);
 			$("#url").val(data[0].url);
@@ -59,20 +57,21 @@ powrer.getResourcebyId=function(value){
 		}
 	});
 }
-powrer.toEditResource=function(value){
-	var params = {
-			id:value,
-			name:$("#name").val(),
-			url:$("#url").val(),
-			parentId:$("#parentId").val(),
-			description:$("#description").val()
+//---------------------->  编辑保存资源实体     <--------------//
+powrer.toEditResource=function(){
+	this.params = {
+		id:this.value,
+		name:$("#name").val(),
+		url:$("#url").val(),
+		parentId:$("#parentId").val(),
+		description:$("#description").val()
 	};
 	$.ajax({
 		url : "/power/editsave",
-		dataType : 'json',
+		dataType :'json',
 		type : 'post',
 		scriptCharset :'utf-8',
-		data:params,
+		data:this.params,
 		success : function(data) {
 			if (data != '-1') {
 				alert("修改成功！");
@@ -86,22 +85,23 @@ powrer.toEditResource=function(value){
 		}
 	});
 }
+//---------------------->  重置编辑界面     <--------------//
 powrer.resetdiv=function(){
 	$("#name").val("");
 	$("#url").val("");
 	$("#parentId").val(0);
 	$("#description").val("");
 }
-powrer.AddWinOpen=function(value,title){
+//---------------------->  打开添加界面     <--------------//
+powrer.AddWinOpen=function(){
 	powrer.resetdiv();
-	var val=value;
 	$("#dialog").dialog({
 		height:540,
 		width:600,
-		title:title,
+		title:this.title,
 		buttons : {
 			"确定" : function() {
-				powrer.toAddResource(val);
+				powrer.toAddResource(this.value);
 			},
 			"取消" : function() {
 				$(this).dialog('close');
@@ -109,19 +109,20 @@ powrer.AddWinOpen=function(value,title){
 		}
 	});
 }
-powrer.toAddResource=function(value){
-	var params = {
-			name:$("#name").val(),
-			url:$("#url").val(),
-			parentId:value,
-			description:$("#description").val()
+//---------------------->  新增保存资源实体     <--------------//
+powrer.toAddResource=function(){
+	this.params = {
+		name:$("#name").val(),
+		url:$("#url").val(),
+		parentId:this.value,
+		description:$("#description").val()
 	};
 	$.ajax({
 		url : "/power/addsave",
 		dataType : 'json',
 		type : 'post',
 		scriptCharset :'utf-8',
-		data:params,
+		data:this.params,
 		success : function(data) {
 			if (data != '-1') {
 				alert("保存成功！");
@@ -135,20 +136,19 @@ powrer.toAddResource=function(value){
 		}
 	});
 }
-powrer.toDelResource=function(value){
-	var params = {id:value};
+//---------------------->  删除资源实体     <--------------//
+powrer.toDelResource=function(){
+	this.params = {id:this.value};
 	$.ajax({
 		url : "/power/del",
 		dataType : 'json',
 		type : 'post',
 		scriptCharset :'utf-8',
-		data:params,
+		data:this.params,
 		success : function(data) {
 			if (data != '-1') {
-				//alert("删除成功！");
 				location.href = "/power/list";
 			} else {
-				//alert("删除失败！");
 				location.href = "/power/list";
 			}
 		},error: function (data, status, e){
