@@ -6,10 +6,7 @@ sysLogin.toLogin=function(){
 	this.username=$("#username").val();
 	this.pwssword=$("#password1").val();
 	var a=this.username.length; var b=this.pwssword.length;
-	if(a==0||b==0){
-		alert("用户名和密码不能为空 !");
-		return;
-	}
+	if(a==0||b==0){alert("用户名和密码不能为空 !");return;}
 	this.params = {uname:this.username,password:this.pwssword};
 	$.ajax({
 		url : "/sysuser/findSysUser",
